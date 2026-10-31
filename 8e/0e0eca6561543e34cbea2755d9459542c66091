@@ -1,0 +1,23 @@
+icons/icon.svg
+  s_aab781fba9a26d::t_fadba454b86221 1-11
+manifest.json
+  s_aab781fba9a26d::t_2674bf0b46038d 1-36
+popup.html
+  s_aab781fba9a26d::t_43c2ce786ecf81 1-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8e0e0eca6561543e34cbea2755d9459542c66091",
+  "prompts": {},
+  "sessions": {
+    "s_aab781fba9a26d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2939632-312d-47d3-ba69-c174b21f132e",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Siddarth <110726331+siddarth2810@users.noreply.github.com>"
+    }
+  }
+}
