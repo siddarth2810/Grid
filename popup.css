@@ -1,0 +1,180 @@
+:root {
+  --accent: #ff2d55;
+  --bg: #ffffff;
+  --fg: #17151f;
+  --muted: #6e6a7c;
+  --line: #ebe9f0;
+  --field: #f5f4f8;
+  --hover: #ecebf2;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17151f;
+    --fg: #f1eff6;
+    --muted: #8f8a9e;
+    --line: #2a2735;
+    --field: #221f2c;
+    --hover: #2c2938;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  width: 300px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+h1, h2, p { margin: 0; }
+h1 { font-size: 14px; font-weight: 650; }
+h2 { font-size: 11px; font-weight: 650; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand img { border-radius: 7px; }
+#status { color: var(--muted); font-size: 12px; }
+
+main { padding: 14px 16px 4px; }
+section { padding: 14px 0 10px; border-top: 1px solid var(--line); margin-top: 14px; }
+section + section { margin-top: 0; }
+section h2 { margin-bottom: 8px; }
+section .heading h2 { margin: 0; }
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--field);
+  cursor: pointer;
+}
+button:hover { background: var(--hover); }
+button.primary {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+button.primary:hover { filter: brightness(1.08); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  cursor: default;
+}
+label.row { cursor: pointer; }
+
+.swatches { display: flex; align-items: center; gap: 6px; }
+.swatches button,
+.swatches .custom {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--s);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.swatches button.active,
+.swatches .custom.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--s); }
+.swatches .custom {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: conic-gradient(#ff2d55, #ff9f0a, #30d158, #0a84ff, #bf5af2, #ff2d55);
+}
+.swatches .custom input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+.toggle,
+.switch input {
+  appearance: none;
+  flex: none;
+  width: 32px;
+  height: 18px;
+  margin: 0;
+  border-radius: 9px;
+  background: var(--hover);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.toggle::after,
+.switch input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s;
+}
+/* Toggles get their initial state in JS; don't animate that first paint. */
+body:not(.ready) .toggle,
+body:not(.ready) .switch input,
+body:not(.ready) .toggle::after,
+body:not(.ready) .switch input::after { transition: none; }
+.toggle:checked,
+.switch input:checked { background: var(--accent); }
+.toggle:checked::after,
+.switch input:checked::after { transform: translateX(14px); }
+.switch { display: flex; }
+.switch span { display: none; }
+
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+.fields label { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--muted); }
+.fields input {
+  font: inherit;
+  font-size: 13px;
+  color: var(--fg);
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--field);
+  outline: none;
+}
+.fields input:focus { border-color: var(--accent); }
+section:has(.heading .toggle:not(:checked)) .fields { opacity: 0.45; }
+
+footer {
+  display: grid;
+  gap: 8px;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+}
+#shortcuts { display: grid; gap: 3px; }
+kbd {
+  font: inherit;
+  font-weight: 600;
+  color: var(--fg);
+  background: var(--field);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+footer a { color: var(--muted); justify-self: start; }
+footer a:hover { color: var(--fg); }
+
+.blocked-note { display: none; margin: 14px 16px 0; padding: 10px 12px; border-radius: 8px; background: var(--field); color: var(--muted); }
+body.blocked .blocked-note { display: block; }
+body.blocked #draw,
+body.blocked .pair,
+body.blocked .switch { opacity: 0.4; pointer-events: none; }

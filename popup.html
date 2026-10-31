@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img src="icons/icon32.png" alt="" width="28" height="28" />
+        <div>
+          <h1>Plumb</h1>
+          <p id="status">Off</p>
+        </div>
+      </div>
+      <label class="switch" title="Show / hide lines">
+        <input type="checkbox" id="visible" />
+        <span></span>
+      </label>
+    </header>
+
+    <div class="blocked-note">
+      Chrome doesn't let extensions draw on this page. Try it on a regular website.
+    </div>
+
+    <main>
+      <button id="draw" class="primary">Draw lines</button>
+      <div class="pair">
+        <button id="undo">Undo</button>
+        <button id="clear">Clear all</button>
+      </div>
+
+      <section>
+        <h2>Lines</h2>
+        <div class="row">
+          <span>Color</span>
+          <div class="swatches" id="swatches">
+            <button data-color="#ff2d55" style="--s: #ff2d55" title="Pink"></button>
+            <button data-color="#0a84ff" style="--s: #0a84ff" title="Blue"></button>
+            <button data-color="#30d158" style="--s: #30d158" title="Green"></button>
+            <button data-color="#ff9f0a" style="--s: #ff9f0a" title="Orange"></button>
+            <button data-color="#bf5af2" style="--s: #bf5af2" title="Purple"></button>
+            <label class="custom" title="Custom color">
+              <input type="color" id="color" />
+            </label>
+          </div>
+        </div>
+        <label class="row">
+          <span>Snap to element edges</span>
+          <input type="checkbox" class="toggle" id="snap" />
+        </label>
+        <label class="row">
+          <span>Show spacing between lines</span>
+          <input type="checkbox" class="toggle" id="spacing" />
+        </label>
+      </section>
+
+      <section>
+        <label class="row heading">
+          <h2>Column grid</h2>
+          <input type="checkbox" class="toggle" id="columns" />
+        </label>
+        <div class="fields">
+          <label>Columns<input type="number" id="columnCount" min="1" max="48" /></label>
+          <label>Gutter<input type="number" id="gutter" min="0" /></label>
+          <label>Max width<input type="number" id="maxWidth" min="0" /></label>
+          <label>Margin<input type="number" id="margin" min="0" /></label>
+        </div>
+      </section>
+
+      <section>
+        <label class="row heading">
+          <h2>Baseline grid</h2>
+          <input type="checkbox" class="toggle" id="baseline" />
+        </label>
+        <div class="fields">
+          <label>Row height<input type="number" id="baselineStep" min="2" /></label>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div id="shortcuts"></div>
+      <a href="#" id="edit-shortcuts">Change shortcuts</a>
+    </footer>
+
+    <script src="defaults.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
